@@ -2,10 +2,6 @@ import React from "react";
 import yt_shorts from './assets/yt_shorts.jpg';
 
 function App() {
- 
-
-
-
   return (
     <>
       <div style={{

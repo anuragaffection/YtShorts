@@ -1,3 +1,21 @@
+Target 
+-- 01. responsive 
+-- 02. autoPlay on 
+-- 03. preload on 
+-- 04. swipe up & swipt donw for mobile 
+-- 05. arrow key for desktop 
+-- 06. no scrolling in x & y direction - single page application 
+-- 07. video progress - done 
+-- 08. play pause - done 
+-- 09. video title - 
+-- 10. like button for each video 
+-- 11. Detailed Readme.md with live link  and screenshots of the project 
+
+
+
+
+
+
 
 01. video propertis 
 
@@ -23,3 +41,24 @@
 "noprogressbar": Hides the progress bar from the control strip.
 "nomute": Hides the mute button from the control strip.
 "novolume": Hides the volume slider from the control strip. 
+
+
+video::-webkit-media-controls-fullscreen-button {
+  display: none !important;
+}
+
+video::-webkit-media-controls-overlay-play-button {
+  display: none !important;
+}
+
+video::-webkit-media-controls-enclosure {
+  overflow: hidden !important;
+}
+
+video::-webkit-media-controls-volume-button {
+  display: none !important;
+}
+
+video::-webkit-media-controls-volume-slider {
+  display: none !important;
+}
