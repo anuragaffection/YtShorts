@@ -1,0 +1,25 @@
+
+01. video propertis 
+
+            controls
+            autoPlay
+            loop
+            playsInline
+            disablePictureInPicture
+            nodwonload
+            noremoteplayback
+            nofullscreen
+            disableRemotePlayback 
+
+
+02. 
+"nodownload": 
+"nofullscreen": 
+"noremoteplayback": Prevents remote playback support, which means the video cannot be played on remote devices.
+"noremoteplayback": Prevents remote playback support, which means the video cannot be played on remote devices.
+"noduration": Hides the duration display from the control strip.
+"nosubtitles": Hides the subtitles/captions button from the control strip.
+"noplaybackrate": Hides the playback rate button from the control strip.
+"noprogressbar": Hides the progress bar from the control strip.
+"nomute": Hides the mute button from the control strip.
+"novolume": Hides the volume slider from the control strip. 
