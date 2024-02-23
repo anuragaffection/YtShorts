@@ -16,12 +16,4 @@
     display: none !important;
   }
 
-  video::-webkit-media-controls-overlay-play-button {
-    display: none !important;
-  }
-
-  video::-webkit-media-controls-enclosure {
-    overflow: hidden !important;
-  }
-
 }
