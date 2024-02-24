@@ -6,7 +6,7 @@ This is task project, here I am mimicking basic Youtube Shorts  functionality. A
 
 
 ## Live
-- This application is purely frontend application, no collection data.
+- This application is purely frontend application, no collection of data.
 - It is deployed on vercel [Live Link](https://yt-shorts-anurag.vercel.app/).
 - Live  https://yt-shorts-anurag.vercel.app/
 

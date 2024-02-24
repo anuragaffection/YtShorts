@@ -106,7 +106,7 @@ function App() {
                   backgroundColor: 'black',
                   borderRadius: '1rem',
                   width: '300px',
-                  height : isMobile ? '90vh' : '75vh'
+                  height : isMobile ? '80vh' : '75vh'
                 }}
                 autoPlay
                 loop
