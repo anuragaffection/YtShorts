@@ -4,11 +4,10 @@ import VideoPlayer from '../components/VideoPlayer.jsx'
 
 const apiKey = import.meta.env.VITE_API_KEY;
 
-
 function App() {
-
   const [videoData, setVideoData] = useState([]);
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const [touchStartY, setTouchStartY] = useState(null);
 
   useEffect(() => {
     const fetchVideos = async () => {
@@ -18,17 +17,36 @@ function App() {
           throw new Error('Failed to fetch videos');
         }
         const data = await response.json();
-        setVideoData(data.hits.slice(0, 5));
+        setVideoData(data.hits);
       } catch (error) {
         console.error('Error fetching videos:', error);
       }
     };
-
     fetchVideos();
   }, []);
 
-  console.log(videoData);
+  const handleTouchStart = (event) => {
+    setTouchStartY(event.touches[0].clientY);
+  };
 
+  const handleTouchEnd = (event) => {
+    if (touchStartY === null) return; // Ignore if touchStartY is not set
+
+    const touchEndY = event.changedTouches[0].clientY;
+    const deltaY = touchEndY - touchStartY;
+    const sensitivity = 50; // Adjust this value according to sensitivity
+
+    if (deltaY > sensitivity) {
+      // Swipe down
+      handlePreviousVideo();
+    } else if (deltaY < -sensitivity) {
+      // Swipe up
+      handleNextVideo();
+    }
+
+    // Reset touchStartY
+    setTouchStartY(null);
+  };
 
   const handlePreviousVideo = () => {
     setCurrentVideoIndex((prevIndex) => (prevIndex === 0 ? videoData.length - 1 : prevIndex - 1));
@@ -38,26 +56,19 @@ function App() {
     setCurrentVideoIndex((prevIndex) => (prevIndex === videoData.length - 1 ? 0 : prevIndex + 1));
   };
 
-
   return (
     <div style={{
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      marginTop: '1rem',
+      padding: '1rem',
       gap: '1rem',
-    }}>
+    }} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
 
-      {
-        videoData.length > 0 ? (
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              paddingTop: '1rem',
-            }}
-          >
+      <div>
+        {
+          videoData.length > 0 ? (
             <video
               key={videoData[currentVideoIndex].id}
               style={{
@@ -79,30 +90,25 @@ function App() {
                 type="video/mp4"
               />
             </video>
-          </div>
-        ) : <VideoPlayer/>
-      }
+
+          ) : <VideoPlayer />
+        }
+      </div>
 
       <div style={{
         display: 'flex',
-        flexDirection: "row",
         justifyContent: 'space-around',
-        alignItems: 'center',
+        padding: '1rem',
+        width: '270px',
+        borderRadius: '1rem',
+        gap: '1rem',
         position: 'sticky',
         bottom: '1rem',
-        gap: '1rem'
+        backgroundColor: 'black'
       }}>
-        <button onClick={handlePreviousVideo}> Previous </button>
-        <img
-          src={yt_shorts}
-          alt="logo"
-          height={"40px"}
-          width={"40px"}
-          style={{
-            borderRadius: '10px'
-          }}
-        />
-        <button onClick={handleNextVideo}>Next </button>
+        <button onClick={handlePreviousVideo}>Previous</button>
+        <img src={yt_shorts} alt="logo" height="30px" width="30px" style={{ borderRadius: '7px' }} />
+        <button onClick={handleNextVideo}>Next</button>
       </div>
     </div>
   );
