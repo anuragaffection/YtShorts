@@ -75,7 +75,7 @@ function App() {
                 backgroundColor: 'black',
                 borderRadius: '1rem',
                 width: '300px',
-                height: '480px',
+                height: '75vh',
               }}
               autoPlay
               loop
