@@ -8,7 +8,7 @@ Target
 -- 07. video progress - done 
 -- 08. play pause - done 
 -- 09. video title - ]]
--- 10. like button for each video ]]
+-- 10. like button for each video - done 
 -- 11. Detailed Readme.md with live link  and screenshots of the project ]]
 
 
