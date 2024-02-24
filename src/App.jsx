@@ -25,26 +25,21 @@ function App() {
     fetchVideos();
   }, []);
 
+
   const handleTouchStart = (event) => {
     setTouchStartY(event.touches[0].clientY);
   };
 
   const handleTouchEnd = (event) => {
-    if (touchStartY === null) return; // Ignore if touchStartY is not set
-
+    if (touchStartY === null) return;
     const touchEndY = event.changedTouches[0].clientY;
     const deltaY = touchEndY - touchStartY;
-    const sensitivity = 50; // Adjust this value according to sensitivity
-
+    const sensitivity = 50;
     if (deltaY > sensitivity) {
-      // Swipe down
       handlePreviousVideo();
     } else if (deltaY < -sensitivity) {
-      // Swipe up
       handleNextVideo();
     }
-
-    // Reset touchStartY
     setTouchStartY(null);
   };
 
@@ -57,15 +52,18 @@ function App() {
   };
 
   return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: '1rem',
-      gap: '1rem',
-    }} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
-
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: '1rem',
+        gap: '1rem',
+      }}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       <div>
         {
           videoData.length > 0 ? (
@@ -90,22 +88,23 @@ function App() {
                 type="video/mp4"
               />
             </video>
-
           ) : <VideoPlayer />
         }
       </div>
 
-      <div style={{
-        display: 'flex',
-        justifyContent: 'space-around',
-        padding: '1rem',
-        width: '270px',
-        borderRadius: '1rem',
-        gap: '1rem',
-        position: 'sticky',
-        bottom: '1rem',
-        backgroundColor: 'black'
-      }}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-around',
+          padding: '1rem',
+          width: '270px',
+          borderRadius: '1rem',
+          gap: '1rem',
+          position: 'sticky',
+          bottom: '1rem',
+          backgroundColor: 'black'
+        }}
+      >
         <button onClick={handlePreviousVideo}>Previous</button>
         <img src={yt_shorts} alt="logo" height="30px" width="30px" style={{ borderRadius: '7px' }} />
         <button onClick={handleNextVideo}>Next</button>
