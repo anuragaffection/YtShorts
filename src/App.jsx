@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import yt_shorts from './assets/yt_shorts.jpg';
+import VideoPlayer from '../components/VideoPlayer.jsx'
 
 const apiKey = import.meta.env.VITE_API_KEY;
 
@@ -79,7 +80,7 @@ function App() {
               />
             </video>
           </div>
-        ) : null
+        ) : <VideoPlayer/>
       }
 
       <div style={{
