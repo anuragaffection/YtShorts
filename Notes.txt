@@ -1,5 +1,5 @@
 Target 
--- 01. responsive --]]
+-- 01. responsive -- done 
 -- 02. autoPlay on -- done 
 -- 03. preload on  -- done 
 -- 04. swipe up & swipe down for mobile -- done 
@@ -11,9 +11,6 @@ Target
 -- 10. like button for each video - done 
 -- 11. Detailed Readme.md with live link  and screenshots of the project ]]
 -- 12. achieve scroll like instgram & youtube when user swipe up & down ]]
-
-
-
 
 
 
@@ -34,8 +31,7 @@ Target
             controlsList: 
 
 
-
-02. 
+02. controlsList
 "nodownload": 
 "nofullscreen": 
 "noremoteplayback":
@@ -48,7 +44,7 @@ Target
 "novolume":  
 
 
-
+03. webkit
 video::-webkit-media-controls-fullscreen-button {
   display: none !important;
 }

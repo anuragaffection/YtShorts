@@ -186,7 +186,8 @@ function App() {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            gap: '4px'
+            gap: '4px',
+            cursor: 'pointer'
           }}
         >
           <MdArrowUpward />
@@ -199,7 +200,8 @@ function App() {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            gap: '4px'
+            gap: '4px',
+            cursor : 'pointer'
           }}
         > <MdArrowDownward />
           Next
