@@ -37,6 +37,7 @@ function App() {
     const sensitivity = 50;
     if (deltaY > sensitivity) {
       handlePreviousVideo();
+      event.preventDefault(); 
     } else if (deltaY < -sensitivity) {
       handleNextVideo();
     }
