@@ -12,6 +12,7 @@ function App() {
   const [likeStatus, setLikeStatus] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
   const [touchStartY, setTouchStartY] = useState(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
     const fetchVideos = async () => {
@@ -33,8 +34,15 @@ function App() {
 
   // console.log(videoData);
 
-
-
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const handleTouchStart = (event) => {
     setTouchStartY(event.touches[0].clientY);
@@ -98,7 +106,7 @@ function App() {
                   backgroundColor: 'black',
                   borderRadius: '1rem',
                   width: '300px',
-                  height: '75vh',
+                  height : isMobile ? '90vh' : '75vh'
                 }}
                 autoPlay
                 loop
@@ -136,7 +144,6 @@ function App() {
                 />
                 <div>{videoData[currentVideoIndex].user}</div>
               </div>
-
               <div
                 onClick={() => handleLike()}
                 style={{
@@ -159,7 +166,7 @@ function App() {
 
       <div
         style={{
-          display: 'flex',
+          display: isMobile ? 'none' : 'flex',
           justifyContent: 'space-around',
           padding: '1rem',
           width: '270px',
@@ -167,7 +174,10 @@ function App() {
           gap: '1rem',
           position: 'sticky',
           bottom: '1rem',
-          backgroundColor: 'black'
+          backgroundColor: 'black',
+          '@media (max-width: 768px)': {
+            display: 'none'
+          }
         }}
       >
         <button
