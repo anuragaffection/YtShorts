@@ -2,7 +2,6 @@ import React from 'react'
 
 function VideoPlayer() {
     return (
-
         <video
             style={{
                 objectFit: 'cover',
@@ -15,7 +14,7 @@ function VideoPlayer() {
             loop
             disablePictureInPicture
             controls
-            // preload="auto"
+            preload="auto"
             controlsList="nodownload nofullscreen noduration noplaybackrate novolume"
         >
             <source

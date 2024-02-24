@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { AiFillLike, AiOutlineLike } from 'react-icons/ai'
+import { MdArrowUpward, MdArrowDownward } from 'react-icons/md'
 import yt_shorts from './assets/yt_shorts.png';
 import VideoPlayer from '../components/VideoPlayer.jsx'
 
@@ -66,7 +67,7 @@ function App() {
     setLikeStatus(false)
   };
 
-  
+
   const handleLike = useCallback(() => {
     setLikeStatus(prevState => !prevState);
     setLikeCount(prevLikeCount => prevLikeCount + (likeStatus ? -1 : 1));
@@ -172,9 +173,30 @@ function App() {
           backgroundColor: 'black'
         }}
       >
-        <button onClick={handlePreviousVideo}>Previous</button>
+        <button
+          onClick={handlePreviousVideo}
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '4px'
+          }}
+        >
+          <MdArrowUpward />
+          Previous
+        </button>
         <img src={yt_shorts} alt="logo" height="30px" width="30px" />
-        <button onClick={handleNextVideo}>Next</button>
+        <button
+          onClick={handleNextVideo}
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '4px'
+          }}
+        > <MdArrowDownward />
+          Next
+        </button>
       </div>
     </div>
   );
