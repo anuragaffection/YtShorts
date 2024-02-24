@@ -1,67 +1,109 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import yt_shorts from './assets/yt_shorts.jpg';
 
+const apiKey = import.meta.env.VITE_API_KEY;
+
+
 function App() {
+
+  const [videoData, setVideoData] = useState([]);
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+
+  useEffect(() => {
+    const fetchVideos = async () => {
+      try {
+        const response = await fetch(`https://pixabay.com/api/videos/?key=${apiKey}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch videos');
+        }
+        const data = await response.json();
+        setVideoData(data.hits.slice(0, 5));
+      } catch (error) {
+        console.error('Error fetching videos:', error);
+      }
+    };
+
+    fetchVideos();
+  }, []);
+
+  console.log(videoData);
+
+
+  const handlePreviousVideo = () => {
+    setCurrentVideoIndex((prevIndex) => (prevIndex === 0 ? videoData.length - 1 : prevIndex - 1));
+  };
+
+  const handleNextVideo = () => {
+    setCurrentVideoIndex((prevIndex) => (prevIndex === videoData.length - 1 ? 0 : prevIndex + 1));
+  };
+
+
   return (
-    <>
-      <div style={{
-        height: "95vh",
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: '1rem',
-        gap: '1rem',
-      }}>
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: '1rem',
+      gap: '1rem',
+    }}>
 
-        <div style={{
-          position: 'relative',
-          width: '300px',
-          height: '480px',
-          paddingTop: '1rem',
-        }}>
-          <video
-          
+      {
+        videoData.length > 0 ? (
+          <div
             style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              backgroundColor: 'black',
-              borderRadius: '1rem'
+              display: 'flex',
+              flexDirection: 'column',
+              paddingTop: '1rem',
             }}
-            autoPlay
-            loop
-            disablePictureInPicture
-            controls
-            controlsList="nodownload nofullscreen noduration noplaybackrate novolume"
           >
-            <source
-              src="https://media.geeksforgeeks.org/wp-content/uploads/20231020155223/Full-Stack-Development-_-LIVE-Classes-_-GeeksforGeeks.mp4"
-              type="video/mp4"
-            />
-          </video>
-        </div>
+            <video
+              key={videoData[currentVideoIndex].id}
+              style={{
+                objectFit: 'cover',
+                backgroundColor: 'black',
+                borderRadius: '1rem',
+                width: '300px',
+                height: '480px',
+              }}
+              autoPlay
+              loop
+              disablePictureInPicture
+              controls
+              preload="auto"
+              controlsList="nodownload nofullscreen noduration noplaybackrate novolume"
+            >
+              <source
+                src={videoData[currentVideoIndex].videos.medium.url}
+                type="video/mp4"
+              />
+            </video>
+          </div>
+        ) : null
+      }
 
-        <div style={{
-          position: 'sticky',
-          bottom: 0,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}>
-          <img
-            src={yt_shorts}
-            alt="logo"
-            height={"40px"}
-            width={"40px"}
-          />
-        </div>
-
+      <div style={{
+        display: 'flex',
+        flexDirection: "row",
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        position: 'sticky',
+        bottom: '1rem',
+        gap: '1rem'
+      }}>
+        <button onClick={handlePreviousVideo}> Previous </button>
+        <img
+          src={yt_shorts}
+          alt="logo"
+          height={"40px"}
+          width={"40px"}
+          style={{
+            borderRadius: '10px'
+          }}
+        />
+        <button onClick={handleNextVideo}>Next </button>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -4,6 +4,7 @@
   font-weight: 400;
 
   max-height: 100vh;
+  overflow: scroll;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
