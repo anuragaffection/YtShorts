@@ -137,22 +137,19 @@ function App() {
                 <div>{videoData[currentVideoIndex].user}</div>
               </div>
 
-              <div style={{
-                position: 'absolute',
-                bottom: '5rem',
-                right: '1rem',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center'
-              }}>
-                <div
-                  onClick={() => handleLike()}
-                >
-                  {
-                    likeStatus ? <AiFillLike /> : <AiOutlineLike />
-                  }
-                </div>
+              <div
+                onClick={() => handleLike()}
+                style={{
+                  position: 'absolute',
+                  bottom: '5rem',
+                  right: '1rem',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  cursor: 'pointer'
+                }}>
+                <div>{likeStatus ? <AiFillLike /> : <AiOutlineLike />}</div>
                 <div> {likeCount} </div>
               </div>
             </div>
